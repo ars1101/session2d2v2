@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:session2d2v2/auth/pages/home.dart';
+import 'package:session2d2v2/home/presentation/pages/home.dart';
 import 'package:session2d2v2/auth/pages/newpass.dart';
 import 'package:session2d2v2/auth/widgets/customtextfield.dart';
 import 'package:session2d2v2/auth/pages/signin.dart';
+import 'package:session2d2v2/auth/widgets/supawidgets.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:session2d2v2/main.dart';
 import 'package:timer_count_down/timer_controller.dart';
@@ -162,10 +163,10 @@ class _otppageState extends State<otppage> {
                       onPressed: (isValid())
                           ? () async {
                               try {
-                                var res = await supabase.auth
-                                    .verifyOTP(token: otpc.text, type: OtpType.email, email: widget.emali);
-                                var user = res.user;
-                                var session = res.session;
+
+                                var user = Verifyotp(otpc.text, widget.emali);
+
+
 
 
                                 Navigator.of(context).push(MaterialPageRoute(

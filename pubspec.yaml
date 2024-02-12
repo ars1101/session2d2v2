@@ -64,8 +64,31 @@ flutter:
 
 
   assets:
-    - assets/eye-slash.png
     - assets/google.png
+    - assets/house-2.png
+    - assets/profile-circle.png
+    - assets/smart-car.png
+    - assets/smart-car_1.png
+    - assets/wallet-3.png
+    - assets/house-2_1.png
+    - assets/profile-circle_1.png
+    - assets/eye-slash.png
+    - assets/arrow.png
+    - assets/papers.png
+    - assets/notification.png
+    - assets/wallet-2.png
+    - assets/carbon_two-person-lift.png
+    - assets/map.png
+    - assets/logout.png
+    - assets/arrow_2.png
+    - assets/origin.png
+    - assets/dest.png
+    - assets/add.png
+    - assets/clock.png
+    - assets/calen.png
+    - assets/tick.png
+    - assets/mapa.png
+    - assets/sun.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

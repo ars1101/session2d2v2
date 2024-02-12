@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:session2d2v2/auth/pages/home.dart';
+import 'package:session2d2v2/home/presentation/pages/home.dart';
 import 'package:session2d2v2/auth/pages/otp.dart';
 import 'package:session2d2v2/auth/widgets/customtextfield.dart';
 import 'package:session2d2v2/auth/pages/signin.dart';
@@ -8,6 +8,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:session2d2v2/main.dart';
 import 'signup.dart';
 import 'email.dart';
+import 'package:session2d2v2/auth/widgets/supawidgets.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -162,14 +163,12 @@ class _SignInState extends State<SignIn> {
                               try {
                                 var res = await supabase.auth
                                     .signInWithPassword(
-                                        password: passc.text,
-                                        email: emailc.text);
-                                var user = res.user;
-                                var session = res.session;
-                                if (user != null) {
+                                    password: passc.text,
+                                    email: emailc.text);
+                                   usera =  res.user;
+                                if (usera != null) {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) => home(
-                                            title: '',
                                           )));
                                 }
                               } on AuthException catch (e) {

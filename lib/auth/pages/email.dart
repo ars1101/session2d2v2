@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:session2d2v2/auth/pages/home.dart';
+import 'package:session2d2v2/home/presentation/pages/home.dart';
 import 'package:session2d2v2/auth/pages/otp.dart';
 import 'package:session2d2v2/auth/widgets/customtextfield.dart';
 import 'package:session2d2v2/auth/pages/signin.dart';
+import 'package:session2d2v2/auth/widgets/supawidgets.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:session2d2v2/main.dart';
 import 'signup.dart';
@@ -86,7 +87,7 @@ class _emailpageState extends State<emailpage> {
                       onPressed: (isValid() == true)
                           ? () async {
                         try {
-                          await supabase.auth.resetPasswordForEmail(emailc.text);
+                          await SendOTP(emailc.text);
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => otppage(emali: emailc.text,)));
 

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:session2d2v2/auth/pages/home.dart';
 import 'package:session2d2v2/auth/widgets/customtextfield.dart';
 import 'package:session2d2v2/auth/pages/signin.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:session2d2v2/main.dart';
-import 'home.dart';
 import 'signin.dart';
+import 'package:session2d2v2/auth/widgets/supawidgets.dart';
+import 'package:session2d2v2/home/presentation/pages/home.dart';
 
 class signUp extends StatefulWidget {
   const signUp({super.key});
@@ -14,6 +14,8 @@ class signUp extends StatefulWidget {
   @override
   State<signUp> createState() => _signUpState();
 }
+
+User? usera;
 
 class _signUpState extends State<signUp> {
   TextEditingController namec = TextEditingController();
@@ -35,6 +37,7 @@ class _signUpState extends State<signUp> {
       return false;
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -205,26 +208,17 @@ class _signUpState extends State<signUp> {
                       onPressed: (isValid() == true)
                           ? () async {
                               try {
-                                var res = await supabase.auth.signUp(
-                                    password: passc.text, email: emailc.text);
-                                var user = res.user;
-                                var session = res.session;
-                                if (user != null) {
-                                  await supabase.from('profiles').insert({
-                                    'id_user': user.id,
-                                    'phone': phonec.text,
-                                    'name': namec.text,
-                                    'avatar': ''
-                                  });
+                                 usera = await SignUser(emailc.text, passc.text, phonec.text, namec.text);
+                                if (usera != null) {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) => home(
-                                            title: '',
                                           )));
                                 }
                               } on AuthException catch (e) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text(e.message)));
                               }
+                              print(usera);
                             }
                           : null,
                       child: Text('Sign Up')),

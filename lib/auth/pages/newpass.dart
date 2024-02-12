@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:session2d2v2/auth/pages/home.dart';
+import 'package:session2d2v2/home/presentation/pages/home.dart';
 import 'package:session2d2v2/auth/widgets/customtextfield.dart';
 import 'package:session2d2v2/auth/pages/signin.dart';
+import 'package:session2d2v2/auth/widgets/supawidgets.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:session2d2v2/main.dart';
-import 'home.dart';
 import 'signin.dart';
 
 class npass extends StatefulWidget {
@@ -123,6 +123,7 @@ class _npassState extends State<npass> {
                           onPressed: (isValid() == true)
                               ? () async {
                             try {
+                              await newpassword(passc.text);
                               supabase.auth.signOut();
                             } on AuthException catch (e) {
                               ScaffoldMessenger.of(context).showSnackBar(
